@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Edit Pro | Premium Visual Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+:root{
+  --primary:#22c55e;
+  --bg-main:#020617;
+  --card-glass:rgba(15,23,42,.6);
+  --border-glass:rgba(255,255,255,.08);
+  --text-high:#fff;
+  --text-low:#94a3b8;
+  --accent-glow:rgba(34,197,94,.15);
+}
+
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+/* ===== BODY ===== */
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 10% 20%,var(--accent-glow),transparent 40%),
+    radial-gradient(circle at 90% 80%,rgba(59,130,246,.08),transparent 40%),
+    var(--bg-main);
+  color:var(--text-high);
+
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+
+  padding:
+    env(safe-area-inset-top, 24px)
+    24px
+    env(safe-area-inset-bottom, 24px);
+}
+
+/* ===== CARD ===== */
+.main-card{
+  width:100%;
+  max-width:600px;
+  background:var(--card-glass);
+  backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid var(--border-glass);
+  border-radius:40px;
+  padding:48px;
+  box-shadow:0 40px 100px -20px rgba(0,0,0,.7);
+  margin-top:24px;
+  position:relative;
+}
+
+.main-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:40%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--primary),transparent);
+}
+
+/* ===== HEADER ===== */
+header{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.status-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--primary);
+  background:rgba(34,197,94,.1);
+  border:1px solid rgba(34,197,94,.2);
+  margin-bottom:20px;
+}
+
+.status-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--primary);
+  box-shadow:0 0 10px var(--primary);
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  50%{transform:scale(1.5);opacity:.5}
+}
+
+h1{
+  font-size:2.5rem;
+  font-weight:800;
+  margin-bottom:12px;
+}
+
+.hero-text{
+  color:var(--text-low);
+  font-size:1.1rem;
+}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+  margin-bottom:40px;
+}
+
+.item{
+  position:relative;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border-glass);
+  padding:20px;
+  border-radius:24px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  transition:.3s;
+}
+
+.item:hover{
+  transform:translateY(-5px) scale(1.02);
+  background:rgba(255,255,255,.06);
+  border-color:var(--primary);
+}
+
+.item i{
+  color:var(--primary);
+  background:rgba(34,197,94,.1);
+  padding:8px;
+  border-radius:12px;
+  width:fit-content;
+}
+
+.item span{
+  font-weight:600;
+  font-size:.95rem;
+}
+
+/* ===== TOOLTIP ===== */
+.tooltip{
+  position:absolute;
+  bottom:110%;
+  left:50%;
+  transform:translateX(-50%) translateY(6px);
+  width:220px;
+  background:rgba(2,6,23,.95);
+  color:#e5e7eb;
+  font-size:.8rem;
+  padding:10px 14px;
+  border-radius:12px;
+  text-align:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s ease;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 30px rgba(0,0,0,.6);
+  z-index:20;
+}
+
+.tooltip::after{
+  content:"";
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  border:6px solid transparent;
+  border-top-color:rgba(2,6,23,.95);
+}
+
+.item:hover .tooltip{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* ===== WHATSAPP ===== */
+.wa-section{
+  background:linear-gradient(135deg,rgba(34,197,94,.05),transparent);
+  border:1px dashed rgba(34,197,94,.3);
+  border-radius:28px;
+  padding:24px;
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.wa-label{
+  font-size:.85rem;
+  color:var(--text-low);
+}
+
+.wa-number{
+  font-size:1.5rem;
+  font-weight:800;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  border-radius:20px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:1.05rem;
+  background:var(--primary);
+  color:#052e16;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:540px){
+  .main-card{padding:32px 24px}
+  .grid{grid-template-columns:1fr}
+  h1{font-size:2rem}
+}
+</style>
+</head>
+
+<body>
+
+<main class="main-card">
+
+<header>
+  <div class="status-pill">
+    <span class="status-dot"></span>
+    Online • High Speed Editing
+  </div>
+  <h1>Edit Pro Studio</h1>
+  <p class="hero-text">Solusi desain visual premium untuk bisnis dan branding Anda.</p>
+</header>
+
+<div class="grid">
+
+  <div class="item">
+    <i data-lucide="shopping-cart"></i>
+    <span>Iklan Produk</span>
+    <div class="tooltip">Desain iklan visual untuk meningkatkan daya tarik dan penjualan produk.</div>
+  </div>
+
+  <div class="item">
+    <i data-lucide="sparkles"></i>
+    <span>Poster Promosi</span>
+    <div class="tooltip">Poster promo diskon, event, dan launching produk.</div>
+  </div>
+
+  <div class="item">
+    <i data-lucide="instagram"></i>
+    <span>Konten Sosmed</span>
+    <div class="tooltip">Konten Instagram & sosial media agar feed rapi dan profesional.</div>
+  </div>
+
+  <div class="item">
+    <i data-lucide="layers"></i>
+    <span>Banner & Flyer</span>
+    <div class="tooltip">Banner & flyer promosi untuk cetak maupun digital.</div>
+  </div>
+
+  <div class="item">
+    <i data-lucide="video"></i>
+    <span>Thumbnail YouTube</span>
+    <div class="tooltip">Thumbnail menarik untuk meningkatkan klik video.</div>
+  </div>
+
+  <div class="item">
+    <i data-lucide="layout"></i>
+    <span>Katalog Produk</span>
+    <div class="tooltip">Katalog produk rapi dan informatif.</div>
+  </div>
+
+  <div class="item">
+    <i data-lucide="rocket"></i>
+    <span>Branding UMKM</span>
+    <div class="tooltip">Identitas visual UMKM agar terlihat profesional.</div>
+  </div>
+
+  <div class="item">
+    <i data-lucide="store"></i>
+    <span>Foto Produk Marketplace</span>
+    <div class="tooltip">Edit foto produk siap upload Shopee & Tokopedia.</div>
+  </div>
+
+</div>
+
+<div class="wa-section">
+  <span class="wa-label">Direct Support</span>
+  <div class="wa-number">0853 2873 6706</div>
+</div>
+
+<a class="btn" target="_blank"
+   href="https://wa.me/6285328736706?text=Halo%20saya%20ingin%20order%20jasa%20edit%20foto">
+   <i data-lucide="message-square"></i>
+   Order via WhatsApp
+</a>
+
+</main>
+
+<script>
+lucide.createIcons();
+</script>
+
+</body>
+</html>
